@@ -1,0 +1,4 @@
+- name: Set up dependencies for qulacs build
+  hosts: localhost
+  roles:
+    - role: qulacs

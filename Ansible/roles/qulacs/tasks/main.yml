@@ -1,0 +1,8 @@
+- import_tasks: ubuntu.yml
+  when: ansible_facts['os_family'] == 'Debian'
+
+- import_tasks: centos.yml
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- import_role:
+    name: anaconda

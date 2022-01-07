@@ -1,0 +1,6 @@
+ci
+.git
+.github
+.gitignore
+Dockerfile*
+*.md

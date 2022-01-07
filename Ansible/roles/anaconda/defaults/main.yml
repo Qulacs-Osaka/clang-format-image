@@ -1,0 +1,11 @@
+anaconda_python_version: 3
+
+anaconda_version: "2020.11"
+
+anaconda_os: "Linux"
+
+anaconda_arch: "x86_64"
+
+anaconda_installer_dir: "/tmp"
+
+anaconda_path: "/opt/conda"

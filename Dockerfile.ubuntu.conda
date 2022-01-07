@@ -1,0 +1,43 @@
+FROM ubuntu:latest
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHON_VERSION="3.8"
+ENV ANACONDA_PATH="/opt/conda"
+ENV PATH="${ANACONDA_PATH}/bin:${PATH}"
+ENV PWD="/qulacs-osaka"
+ENV QULACS_OSAKA_PACKAGE="qulacs_osaka"
+ENV QULACS_OSAKA_VERSION="0.2.0"
+# Add build artifact to PYTHONPATH and python can find qulacs.
+# Egg file name might vary depending on qulacs and python version.
+ENV PYTHONPATH="${PWD}/dist/${QULACS_OSAKA_PACKAGE}-${QULACS_OSAKA_VERSION}-cp38-cp38-linux_x86_64.whl:${PYTHONPATH}"
+ENV PYTHONPATH="${PWD}/build/lib.linux-x86_64-3.8:${PYTHONPATH}"
+
+RUN apt update \
+    && apt-get install -y --no-install-recommends \
+    ansible \
+    git \
+    gosu
+
+WORKDIR /Ansible
+
+COPY Ansible /Ansible
+
+RUN ansible-playbook site.yml -b
+
+WORKDIR ${PWD}
+
+# conda is not compatible with /bin/sh, so override it.
+SHELL [ "/bin/bash", "-c" ]
+
+#RUN conda create -n "qulacs-osaka" python="${PYTHON_VERSION}" -y
+
+COPY ./entrypoint.sh /
+
+# Work-around for Anaconda environment.
+# Owner of start-up script "/opt/conda/envs/<ENV_NAME>/.tmpXXXXX" is root
+# and it can be read only by root.
+# So change owner of the directory to which it belongs.
+RUN [ -d "/opt/conda" ] && chmod 777 /opt/conda
+
+CMD [ "./script/build_gcc.sh" ]
+ENTRYPOINT [ "/entrypoint.sh", "conda", "run", "--no-capture-output", "-n", "base" ]

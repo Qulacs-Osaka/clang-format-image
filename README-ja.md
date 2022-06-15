@@ -1,4 +1,4 @@
-# DevOps OsakaUniv
+# Qulacs Docker Images
 
 ## Build & Test Qulacs in Docker
 Requirements: Docker([installation](https://docs.docker.com/engine/install/))

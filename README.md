@@ -1,4 +1,4 @@
-# DevOps OsakaUniv
+# Qulacs Docker Images
 
 [日本語版](./README-ja.md)
 

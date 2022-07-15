@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHON_VERSION="3.8"
 ENV ANACONDA_PATH="/opt/conda"
 ENV PATH="${ANACONDA_PATH}/bin:${PATH}"
-ENV PWD="/qulacs-osaka"
+ENV PWD="/qulacs"
 ENV QULACS_OSAKA_PACKAGE="qulacs_osaka"
 ENV QULACS_OSAKA_VERSION="0.2.0"
 # Add build artifact to PYTHONPATH and python can find qulacs.
@@ -29,7 +29,7 @@ WORKDIR ${PWD}
 # conda is not compatible with /bin/sh, so override it.
 SHELL [ "/bin/bash", "-c" ]
 
-#RUN conda create -n "qulacs-osaka" python="${PYTHON_VERSION}" -y
+#RUN conda create -n "qulacs" python="${PYTHON_VERSION}" -y
 
 COPY ./entrypoint.sh /
 

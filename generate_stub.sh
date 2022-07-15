@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-PROJECT=/qulacs-osaka
+PROJECT=/qulacs
 cd $PROJECT
 
 stubgen -p qulacs_osaka_core -o typings

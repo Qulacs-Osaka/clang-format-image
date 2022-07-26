@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT=/qulacs-osaka
+PROJECT=/qulacs
 
 # create .clang-format if not exists
 [ -f $PROJECT/.clang-format ] || cp /.clang-format $PROJECT
